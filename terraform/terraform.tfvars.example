@@ -1,0 +1,5 @@
+location          = "eastus"
+environment       = "prod"
+# Start in report-only. Flip to "enabled" only after reviewing sign-in logs.
+policy_state      = "enabledForReportingButNotEnforced"
+trusted_countries = ["US", "CA", "GB"]

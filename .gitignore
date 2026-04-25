@@ -1,0 +1,43 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+crash.log
+override.tf
+
+# Secrets & Credentials
+.env
+.env.*
+*.pem
+*.key
+*credentials*
+*secret*
+*.p12
+*.pfx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs & Build artifacts
+*.log
+logs/
+builds/
+dist/
+*.zip
+
+# OneNote exports
+*_onenote.html

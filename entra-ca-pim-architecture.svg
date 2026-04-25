@@ -1,0 +1,140 @@
+<svg viewBox="0 0 1200 920" width="1200" height="920" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .box { fill: #fff; stroke: #000; stroke-width: 2; }
+      .deny { fill: #fde2e2; stroke: #c0392b; stroke-width: 2; }
+      .allow { fill: #e6f4ea; stroke: #1e8449; stroke-width: 2; }
+      .gate { fill: #e8f0fe; stroke: #1a73e8; stroke-width: 2; }
+      .pim { fill: #fff8dc; stroke: #b7791f; stroke-width: 2; stroke-dasharray: 6,3; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; fill: #000; }
+      .title-text { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #000; }
+      .header { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #000; }
+      .small { font-family: Arial, sans-serif; font-size: 10px; fill: #333; }
+      .line { stroke: #000; stroke-width: 2; fill: none; }
+      .line-block { stroke: #c0392b; stroke-width: 2; fill: none; stroke-dasharray: 4,3; }
+      .arrow { fill: #000; }
+      .arrow-block { fill: #c0392b; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" class="arrow" />
+    </marker>
+    <marker id="arrowhead-block" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" class="arrow-block" />
+    </marker>
+  </defs>
+
+  <text x="600" y="30" text-anchor="middle" class="header">Azure Entra ID — Conditional Access &amp; PIM</text>
+  <text x="600" y="55" text-anchor="middle" style="font-size: 14px; fill: #666;">Zero-Trust Identity · Just-in-Time Admin · Risk-Based Access</text>
+
+  <!-- Sign-in source -->
+  <rect x="40" y="100" width="180" height="80" class="box" rx="5"/>
+  <text x="130" y="125" text-anchor="middle" class="title-text">User Sign-in</text>
+  <text x="130" y="145" text-anchor="middle" class="small">Any device, any app</text>
+  <text x="130" y="160" text-anchor="middle" class="small">Any location, any time</text>
+
+  <line x1="220" y1="140" x2="280" y2="140" class="line" marker-end="url(#arrowhead)"/>
+
+  <!-- Conditional Access engine -->
+  <rect x="280" y="90" width="640" height="220" class="gate" rx="5"/>
+  <text x="600" y="115" text-anchor="middle" class="title-text">Conditional Access Engine</text>
+
+  <rect x="300" y="130" width="290" height="40" class="deny" rx="3"/>
+  <text x="445" y="148" text-anchor="middle" class="small" style="font-weight:bold">CA-001 · Block legacy auth (always)</text>
+  <text x="445" y="163" text-anchor="middle" class="small">POP/IMAP/SMTP/EAS basic auth</text>
+
+  <rect x="610" y="130" width="290" height="40" class="gate" rx="3"/>
+  <text x="755" y="148" text-anchor="middle" class="small" style="font-weight:bold">CA-002 · Require MFA for all users</text>
+  <text x="755" y="163" text-anchor="middle" class="small">Excludes break-glass account only</text>
+
+  <rect x="300" y="180" width="290" height="40" class="gate" rx="3"/>
+  <text x="445" y="198" text-anchor="middle" class="small" style="font-weight:bold">CA-003 · Admin portals → compliant device</text>
+  <text x="445" y="213" text-anchor="middle" class="small">Intune-managed device + MFA</text>
+
+  <rect x="610" y="180" width="290" height="40" class="deny" rx="3"/>
+  <text x="755" y="198" text-anchor="middle" class="small" style="font-weight:bold">CA-004 · Block untrusted geographies</text>
+  <text x="755" y="213" text-anchor="middle" class="small">Allow-list: US/CA/GB; block else</text>
+
+  <rect x="300" y="230" width="290" height="40" class="deny" rx="3"/>
+  <text x="445" y="248" text-anchor="middle" class="small" style="font-weight:bold">CA-005a · High sign-in risk → block</text>
+  <text x="445" y="263" text-anchor="middle" class="small">Entra ID Protection signals</text>
+
+  <rect x="610" y="230" width="290" height="40" class="gate" rx="3"/>
+  <text x="755" y="248" text-anchor="middle" class="small" style="font-weight:bold">CA-005b · Medium risk → MFA + pwd change</text>
+  <text x="755" y="263" text-anchor="middle" class="small">Force credential rotation</text>
+
+  <text x="600" y="295" text-anchor="middle" class="small" style="font-style:italic">All policies start in report-only · promote to enforced after log review</text>
+
+  <!-- Outcome paths -->
+  <line x1="450" y1="310" x2="450" y2="360" class="line" marker-end="url(#arrowhead)"/>
+  <text x="465" y="335" class="small" style="fill:#1e8449;font-weight:bold">PASS</text>
+
+  <line x1="800" y1="310" x2="800" y2="360" class="line-block" marker-end="url(#arrowhead-block)"/>
+  <text x="815" y="335" class="small" style="fill:#c0392b;font-weight:bold">CHALLENGE / BLOCK</text>
+
+  <!-- Standard access -->
+  <rect x="320" y="360" width="260" height="80" class="allow" rx="5"/>
+  <text x="450" y="385" text-anchor="middle" class="title-text">Standard App Access</text>
+  <text x="450" y="405" text-anchor="middle" class="small">Microsoft 365 · SaaS · custom apps</text>
+  <text x="450" y="422" text-anchor="middle" class="small">Standing user privileges only</text>
+
+  <!-- Blocked / challenged -->
+  <rect x="680" y="360" width="240" height="80" class="deny" rx="5"/>
+  <text x="800" y="385" text-anchor="middle" class="title-text">Block / Step-up</text>
+  <text x="800" y="405" text-anchor="middle" class="small">MFA prompt · device challenge</text>
+  <text x="800" y="422" text-anchor="middle" class="small">or sign-in denied + logged</text>
+
+  <!-- PIM section -->
+  <rect x="40" y="480" width="1120" height="240" class="pim" rx="5"/>
+  <text x="600" y="505" text-anchor="middle" class="title-text">Privileged Identity Management — Just-in-Time Admin Activation</text>
+  <text x="600" y="525" text-anchor="middle" class="small">Roles are eligible, never permanently active. Every elevation is audited.</text>
+
+  <line x1="60" y1="540" x2="1140" y2="540" class="line"/>
+  <text x="80" y="558" class="small" style="font-weight:bold">Role</text>
+  <text x="380" y="558" class="small" style="font-weight:bold">Max Activation</text>
+  <text x="600" y="558" class="small" style="font-weight:bold">Approval</text>
+  <text x="800" y="558" class="small" style="font-weight:bold">MFA on Activation</text>
+  <text x="1010" y="558" class="small" style="font-weight:bold">Justification</text>
+
+  <text x="80" y="580" class="small">Global Administrator</text>
+  <text x="380" y="580" class="small">1 hour</text>
+  <text x="600" y="580" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="800" y="580" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="1010" y="580" class="small" style="fill:#1e8449">✅ required</text>
+
+  <text x="80" y="600" class="small">Privileged Role Administrator</text>
+  <text x="380" y="600" class="small">1 hour</text>
+  <text x="600" y="600" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="800" y="600" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="1010" y="600" class="small" style="fill:#1e8449">✅ required</text>
+
+  <text x="80" y="620" class="small">Security Administrator</text>
+  <text x="380" y="620" class="small">4 hours</text>
+  <text x="600" y="620" class="small" style="fill:#666">— justification only</text>
+  <text x="800" y="620" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="1010" y="620" class="small" style="fill:#1e8449">✅ required</text>
+
+  <text x="80" y="640" class="small">Conditional Access Administrator</text>
+  <text x="380" y="640" class="small">4 hours</text>
+  <text x="600" y="640" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="800" y="640" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="1010" y="640" class="small" style="fill:#1e8449">✅ required</text>
+
+  <text x="80" y="660" class="small">User Administrator</text>
+  <text x="380" y="660" class="small">8 hours</text>
+  <text x="600" y="660" class="small" style="fill:#666">— justification only</text>
+  <text x="800" y="660" class="small" style="fill:#1e8449">✅ required</text>
+  <text x="1010" y="660" class="small" style="fill:#1e8449">✅ required</text>
+
+  <text x="60" y="690" class="small" style="font-style:italic">Quarterly access reviews · auto-removal after 90 days of no activation · audit event for every elevation</text>
+
+  <!-- Logging -->
+  <rect x="40" y="750" width="1120" height="80" class="box" rx="5"/>
+  <text x="600" y="775" text-anchor="middle" class="title-text">Sign-in &amp; Audit Logs → Log Analytics → Microsoft Sentinel</text>
+  <text x="600" y="795" text-anchor="middle" class="small">All Entra ID sign-in events, CA evaluation results, and PIM activations stream to Log Analytics (90-day retention)</text>
+  <text x="600" y="813" text-anchor="middle" class="small">Sentinel detection rules fire on: break-glass account use · impossible travel · PIM activation outside business hours</text>
+
+  <!-- Footer -->
+  <text x="600" y="870" text-anchor="middle" class="small" style="fill:#666">
+    Result: zero standing admin privilege, MFA on every session, instant audit trail, recoverable via documented break-glass account.
+  </text>
+</svg>
