@@ -1,0 +1,77 @@
+{
+  "title": "Entra Identity Controls",
+  "titleFontSize": 78,
+  "mobileTitle": [
+    "Entra identity",
+    "controls"
+  ],
+  "eyebrow": "IDENTITY SECURITY",
+  "tagline": "Conditional access. Eligible privilege.",
+  "mobileTagline": [
+    "Conditional access.",
+    "Eligible privilege."
+  ],
+  "description": [
+    "An Entra ID reference for access and privileged roles.",
+    "Conditional Access policies and PIM configuration."
+  ],
+  "mobileDescription": [
+    "An Entra ID access and privilege reference.",
+    "Conditional Access and PIM configuration."
+  ],
+  "footerLeft": "TERRAFORM",
+  "footerMiddle": "AZURE / ENTRA ID",
+  "footerRight": "SIGN-IN / PRIVILEGE / RECOVERY",
+  "diagram": [
+    "SIGN-IN",
+    "POLICY",
+    "ROLE"
+  ],
+  "summary": "An Entra ID reference for Conditional Access and Privileged Identity Management, with Terraform source and recovery-account notes.",
+  "cards": [
+    {
+      "slug": "architecture",
+      "category": "ARCHITECTURE",
+      "title": "Follow the architecture",
+      "lines": [
+        "Review the components and the",
+        "documented processing or access flow."
+      ],
+      "footer": "DESIGN / REFERENCE FLOW",
+      "href": "entra-ca-pim-architecture.svg"
+    },
+    {
+      "slug": "source",
+      "category": "IMPLEMENTATION",
+      "title": "Inspect access policies",
+      "lines": [
+        "Read the Conditional Access",
+        "resource definitions and inputs."
+      ],
+      "footer": "SOURCE / REFERENCE CODE",
+      "href": "terraform/main.tf"
+    },
+    {
+      "slug": "privilege",
+      "category": "IMPLEMENTATION",
+      "title": "Inspect PIM configuration",
+      "lines": [
+        "Read privileged-role eligibility",
+        "and activation configuration."
+      ],
+      "footer": "SOURCE / REFERENCE CODE",
+      "href": "terraform/pim.tf"
+    },
+    {
+      "slug": "recovery",
+      "category": "RECOVERY NOTES",
+      "title": "Review break-glass notes",
+      "lines": [
+        "Read the documented recovery",
+        "account and access considerations."
+      ],
+      "footer": "IDENTITY / RECOVERY NOTES",
+      "href": "#recovery-guide"
+    }
+  ]
+}

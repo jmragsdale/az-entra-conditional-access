@@ -1,4 +1,53 @@
-# Azure Entra ID Conditional Access & Privileged Identity Management
+<a id="azure-entra-id-conditional-access--privileged-identity-management"></a>
+
+<a href="#setup-guide">
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/assets/readme/header-mobile.png">
+  <img src="docs/assets/readme/header.png" width="1440" alt="Entra Identity Controls. An Entra ID reference for Conditional Access and Privileged Identity Management, with Terraform source and recovery-account notes.">
+</picture>
+</a>
+
+<p>
+  <a href="#setup-guide"><strong>Start here ↗</strong></a> &nbsp; / &nbsp;
+  <a href="terraform/main.tf">Source</a> &nbsp; / &nbsp;
+  <a href="#project-guide">Project guide</a> &nbsp; / &nbsp;
+  <a href="https://github.com/jmragsdale">Profile</a>
+</p>
+
+An Entra ID reference for Conditional Access and Privileged Identity Management, with Terraform source and recovery-account notes.
+
+## Explore the project
+
+Open a card for source, examples or supporting documentation.
+
+<p>
+<a href="entra-ca-pim-architecture.svg">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/architecture-dark.png">
+  <img src="docs/assets/readme/architecture-light.png" width="360" alt="Follow the architecture. Review the components and the documented processing or access flow.">
+</picture>
+</a>
+<a href="terraform/main.tf">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/source-dark.png">
+  <img src="docs/assets/readme/source-light.png" width="360" alt="Inspect access policies. Read the Conditional Access resource definitions and inputs.">
+</picture>
+</a>
+<a href="terraform/pim.tf">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/privilege-dark.png">
+  <img src="docs/assets/readme/privilege-light.png" width="360" alt="Inspect PIM configuration. Read privileged-role eligibility and activation configuration.">
+</picture>
+</a>
+<a href="#recovery-guide">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/recovery-dark.png">
+  <img src="docs/assets/readme/recovery-light.png" width="360" alt="Review break-glass notes. Read the documented recovery account and access considerations.">
+</picture>
+</a>
+</p>
+
+## Project guide
 
 Zero-trust identity controls for Microsoft Entra ID: Conditional Access policies enforcing MFA, device compliance, and risk-based gating, plus Privileged Identity Management (PIM) for just-in-time admin elevation.
 
@@ -7,6 +56,9 @@ Zero-trust identity controls for Microsoft Entra ID: Conditional Access policies
 Reference Entra ID (Azure AD) hardening pattern that eliminates standing privilege. Admin roles are **eligible** rather than **active** — they must be activated through PIM with MFA + justification + time limit. All sign-ins flow through Conditional Access, which blocks legacy auth, requires compliant devices for sensitive apps, and quarantines risky sessions.
 
 ## 🏗️ Architecture
+
+<details>
+<summary>Architecture flow (text)</summary>
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -40,6 +92,8 @@ Reference Entra ID (Azure AD) hardening pattern that eliminates standing privile
 └──────────────────────────────────────────────────────────────┘
 ```
 
+</details>
+
 ## ✨ Features
 
 - 🚫 **Block Legacy Auth** — POP, IMAP, SMTP basic auth completely blocked
@@ -50,6 +104,8 @@ Reference Entra ID (Azure AD) hardening pattern that eliminates standing privile
 - ⏱️ **PIM Just-in-Time** — Zero standing admin privilege; activate per-task with approval
 - 📜 **Activation Justification** — Every elevation requires reason + ticket reference
 - 📊 **Sign-in Forensics** — All Entra logs streamed to Log Analytics + Sentinel
+
+<a id="setup-guide"></a>
 
 ## 🚀 Quick Start
 
@@ -116,6 +172,8 @@ Every activation triggers an audit event captured in Entra audit logs. Reviewers
 - Auto-removal of role for users who haven't activated in 90 days
 - Reviewers required to attest with reason
 
+<a id="recovery-guide"></a>
+
 ## 🆘 Break-Glass Account
 
 A single break-glass admin account is **excluded** from all Conditional Access policies and **not** managed under PIM. It exists to recover from a misconfigured CA policy that locks everyone out.
@@ -140,3 +198,10 @@ A single break-glass admin account is **excluded** from all Conditional Access p
 ---
 
 ⭐ **Hardening your Entra ID tenant?** Star this repo!
+
+<details>
+<summary>README visual assets</summary>
+
+[Artwork sources and regeneration notes](docs/assets/readme/README.md).
+
+</details>
